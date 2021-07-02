@@ -25,7 +25,6 @@ class ViewController: UIViewController {
             performSegue(withIdentifier: "contactsTableViewTableController", sender: nil)
         }
     }
-    
 
 }
 

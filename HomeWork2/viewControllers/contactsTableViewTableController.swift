@@ -8,9 +8,11 @@
 import UIKit
 
 class contactsTableViewTableController: UITableViewController {
-    var data : [Contact] = [Contact.init(name: "valera", surName: "ivanova", jobPlace: "itis", phoneNumber: "+79228", comment: "dfsdf"), Contact.init(name: "ivan", surName: "ivanov", jobPlace: "google", phoneNumber: "89098789", comment: "none")]
+    var data : [Contact] = [Contact.init(name: "valera", surName: "ivanova", jobPlace: "itis", phoneNumber: "+79228", comment: "dfsdf"), Contact.init(name: "ivan", surName: "ivanov", jobPlace: "google", phoneNumber: "89098789", comment: "none"), Contact.init(name: "Ildar", surName: "Arsl", jobPlace: "facebook", phoneNumber: "234432324", comment: "csadfslfkdlfk;dskflds;")]
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -40,11 +42,15 @@ class contactsTableViewTableController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let detailVc = storyboard?.instantiateViewController(withIdentifier: "detailContactInfoViewController") as? detailContactInfoViewController
-        detailVc?.contact = data[indexPath.row]
-        present(detailVc!, animated: true, completion: nil)
+        guard let detailVc = storyboard?.instantiateViewController(withIdentifier: "detailContactInfoViewController") as? detailContactInfoViewController else {
+            return
+        }
+        
+        detailVc.contact = data[indexPath.row]
+        present(detailVc, animated: true, completion: nil)
         
     }
+
 
     /*
     
